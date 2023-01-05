@@ -1,85 +1,14 @@
-"""
-Discord API Wrapper
-~~~~~~~~~~~~~~~~~~~
+import discord
+from discord.ext import commands
 
-A basic wrapper for the Discord API.
+intents = discord. Intents.default()
+ # type: ignoreintents.members = True
 
-:copyright: (c) 2015-present Rapptz
-:license: MIT, see LICENSE for more details.
+client = commands.Bot(command_prefix = '!', intents=intents)
 
-"""
+@client.event
+async def on_member_join(member):
+    role = discord.utils.get(member.guild.roles, name='noob')
+    await member.add_roles(role)
 
-__title__ = 'discord'
-__author__ = 'Rapptz'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2015-present Rapptz'
-__version__ = '2.2.0a'
-
-__path__ = __import__('pkgutil').extend_path(__path__, __name__)
-
-import logging
-from typing import NamedTuple, Literal
-
-from .client import *
-from .appinfo import *
-from .user import *
-from .emoji import *
-from .partial_emoji import *
-from .activity import *
-from .channel import *
-from .guild import *
-from .flags import *
-from .member import *
-from .message import *
-from .asset import *
-from .errors import *
-from .permissions import *
-from .role import *
-from .file import *
-from .colour import *
-from .integrations import *
-from .invite import *
-from .template import *
-from .welcome_screen import *
-from .widget import *
-from .object import *
-from .reaction import *
-from . import (
-    utils as utils,
-    opus as opus,
-    abc as abc,
-    ui as ui,
-    app_commands as app_commands,
-)
-from .enums import *
-from .embeds import *
-from .mentions import *
-from .shard import *
-from .player import *
-from .webhook import *
-from .voice_client import *
-from .audit_logs import *
-from .raw_models import *
-from .team import *
-from .sticker import *
-from .stage_instance import *
-from .scheduled_event import *
-from .interactions import *
-from .components import *
-from .threads import *
-from .automod import *
-
-
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
-
-
-version_info: VersionInfo = VersionInfo(major=2, minor=2, micro=0, releaselevel='alpha', serial=0)
-
-logging.getLogger(__name__).addHandler(logging.NullHandler())
-
-del logging, NamedTuple, Literal, VersionInfo
+client.run('MTA2MDAwNTk5NTgwOTYwNzc4MQ.GSMJyR.GyCBwVXZ2pA7YfwxONHzOGFDRayhKhxJ9phO5E')
